@@ -1,43 +1,66 @@
-
 class Artist {
-    constructor(name, currency) {
+
+    constructor(name, curr) {
         this.list = [];
         this.name = name;
-        this.currency = currency;
+        this.curr = curr;
     }
+
     intro() {
         console.log(`Hi, my name is ${this.name} and I am a musician!`);
     }
-    songPrice(priceInCents) {
-        const price = (priceInCents / 100).toFixed(2);
-        console.log(`Raimonda's price per song is ${price} ${this.currency}`)
+    songPrice(price) {
+        this.list.price = price / 100;
+        console.log(`${this.name}'s price per song is ${(this.list.price).toFixed(2)} ${this.curr}`);
+        return price;
     }
-    addSong(songName) {
+    addSong(song) {
         this.list.push({
-            songName,
+            song: song,
             repeat: 0,
             price: 0,
             profit: 0,
-        })
+        });
+        //console.log(song);       //this one
         console.log(this.list);
     }
     playlist() {
         console.log(`${this.name}'s playlist:`);
-        console.log(`====================`);
-        let count = 0;
+        console.log('========================');
         for (let i = 0; i < this.list.length; i++) {
-            const item = this.list[i];
-            ++count;
-            console.log(`${count}. ${item.songName} (0)`);
-
+            const song = this.list[i];
+            console.log(`${i + 1}. ${song.song} (${song.repeat}) `);
         }
+        console.log('---------------------');
     }
     playSong(index) {
-        let song = this.list[index].songName;
+        //console.log(index);
+        let song = this.list[index].song;
         for (let i = 0; i < this.list.length; i++) {
-
+            const song = this.list[i];
+            if (i === index) {
+                song.repeat++;
+                this.list[index].profit += this.list.price;
+            }
+            /*if (this.list[i].index !== index) {
+                console.log(`Playing song: ${this.list[index].song} (${index})`);
+                break;                  // radau ir baigiu
+            }*/
+            console.log(this.list[index].profit);
         }
+
+        console.log(`Playing song: ${song}.`);
     }
+    fortune() {
+        let profit = 0;
+        for (let i = 0; i < this.list.length; i++) {
+            // const this.list = this.list[i];
+            profit += this.list[i].profit;
+        }
+        console.log(`Total lifetime wealth of ${this.name} is ${profit} ${this.curr} right now!`);
+    }
+}
+
 
 
 
