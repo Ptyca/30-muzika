@@ -21,7 +21,7 @@ class Artist {
             price: 0,
             profit: 0,
         });
-        //console.log(song);       //this one
+
         console.log(this.list);
     }
     playlist() {
@@ -42,10 +42,7 @@ class Artist {
                 song.repeat++;
                 this.list[index].profit += this.list.price;
             }
-            /*if (this.list[i].index !== index) {
-                console.log(`Playing song: ${this.list[index].song} (${index})`);
-                break;                  // radau ir baigiu
-            }*/
+
             console.log(this.list[index].profit);
         }
 
@@ -54,7 +51,6 @@ class Artist {
     fortune() {
         let profit = 0;
         for (let i = 0; i < this.list.length; i++) {
-            // const this.list = this.list[i];
             profit += this.list[i].profit;
         }
         console.log(`Total lifetime wealth of ${this.name} is ${profit} ${this.curr} right now!`);
